@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CivicFix – Local Infrastructure Complaint Management Platform</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+</head>
+<body>
+
+    <!-- Site Header & Navigation -->
+    <header class="site-header">
+        <div class="nav-container">
+            <a href="index.html" class="brand-logo">
+                <div class="brand-icon">🛠️</div>
+                <span>CivicFix</span>
+            </a>
+
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="nav-link active">Home</a></li>
+                    <li><a href="submit-complaint.html" class="nav-link">Report Issue</a></li>
+                    <li><a href="complaints.html" class="nav-link">Complaints</a></li>
+                    <li><a href="public-map.html" class="nav-link">Public Map</a></li>
+                    <li><a href="dashboard.html" class="nav-link">Analytics & Hotspots</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-auth-section" id="nav-user-widget">
+                <!-- Injected dynamically by auth.js -->
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <main class="main-wrapper">
+        <section class="card p-6" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: white; border: none; margin-bottom: 2.5rem; border-radius: var(--radius-lg);">
+            <div style="max-width: 760px;">
+                <div class="badge badge-primary mb-3" style="background: rgba(2, 132, 199, 0.25); color: #38bdf8; border: 1px solid #0284c7;">
+                    CIVIC ACCOUNTABILITY PLATFORM
+                </div>
+                <h1 style="font-size: 2.5rem; font-weight: 800; line-height: 1.2; margin-bottom: 1rem; letter-spacing: -0.5px;">
+                    Make Local Infrastructure Complaints Trackable and Measurable.
+                </h1>
+                <p style="font-size: 1.1rem; color: #cbd5e1; margin-bottom: 2rem; line-height: 1.6;">
+                    Empowering citizens to report overflowing garbage, choked drains, broken streetlights, and dangerous potholes. 
+                    Equipped with AI-assisted categorization, real-time duplicate detection, automated priority routing, and transparent resolution tracking.
+                </p>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <a href="submit-complaint.html" class="btn btn-primary btn-lg">📢 Report an Issue Now</a>
+                    <a href="public-map.html" class="btn btn-outline btn-lg" style="color: white; border-color: #475569;">🗺️ Explore Public Map</a>
+                    <a href="dashboard.html" class="btn btn-ghost btn-lg" style="color: #94a3b8;">📊 View City Dashboard</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Live Metrics Strip -->
+        <section class="mb-4">
+            <div class="kpi-grid" id="dashboard-metrics-container">
+                <!-- Dynamically populated by dashboard.js -->
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section class="mb-4">
+            <h2 class="page-title mb-1">How CivicFix Works</h2>
+            <p class="page-subtitle mb-3">A transparent, data-driven pipeline from citizen reporting to municipal resolution.</p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem;">
+                <div class="card p-5">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">📸</div>
+                    <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 0.35rem;">1. Report with Photo & AI</h3>
+                    <p class="text-sm text-muted">Citizens upload on-site photos and descriptions. Built-in AI suggests the right municipal category with human confirmation.</p>
+                </div>
+
+                <div class="card p-5">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">🔍</div>
+                    <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 0.35rem;">2. Duplicate Detection</h3>
+                    <p class="text-sm text-muted">Proximity matching and text token analysis identify duplicate reports nearby, consolidating citizen voice instead of cluttering tickets.</p>
+                </div>
+
+                <div class="card p-5">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">⚖️</div>
+                    <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 0.35rem;">3. Priority & Auto-Routing</h3>
+                    <p class="text-sm text-muted">Dynamic scoring formula factors severity, affected population, report age, and duplicate counts to dispatch to the correct department.</p>
+                </div>
+
+                <div class="card p-5">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">⏱️</div>
+                    <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 0.35rem;">4. SLA Escalations & Tracking</h3>
+                    <p class="text-sm text-muted">Every ticket has an immutable timeline. Delays automatically trigger escalation reminders for responsible representatives.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Four User Roles Showcase (With Quick Switcher) -->
+        <section class="card p-6 mb-4" style="background: white;">
+            <h2 class="page-title mb-1">Explore Role-Based Workflows</h2>
+            <p class="page-subtitle mb-4">CivicFix supports four primary stakeholder roles. Test each workflow instantly:</p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem;">
+                <div class="card p-4" style="border-top: 4px solid #0284c7;">
+                    <div class="flex-between mb-2">
+                        <strong style="color: #0369a1;">👤 Citizen</strong>
+                        <span class="badge badge-citizen">Report & Track</span>
+                    </div>
+                    <p class="text-sm text-muted mb-3">Lodge complaints, upload pictures, receive status timeline notifications, and track resolution.</p>
+                    <button class="btn btn-sm btn-outline btn-block" onclick="window.civicfixAuth.switchRole('citizen'); alert('Switched to Citizen role (John Citizen). Try reporting an issue!');">
+                        Switch to Citizen
+                    </button>
+                </div>
+
+                <div class="card p-4" style="border-top: 4px solid #8b5cf6;">
+                    <div class="flex-between mb-2">
+                        <strong style="color: #6b21a8;">🛡️ Issue Moderator</strong>
+                        <span class="badge badge-moderator">Verify & Triage</span>
+                    </div>
+                    <p class="text-sm text-muted mb-3">Verify ground reports, review duplicate candidate tickets, merge reports, and route to departments.</p>
+                    <button class="btn btn-sm btn-outline btn-block" onclick="window.civicfixAuth.switchRole('moderator'); alert('Switched to Moderator role (Sarah Jenkins). Check Complaints to verify tickets!');">
+                        Switch to Moderator
+                    </button>
+                </div>
+
+                <div class="card p-4" style="border-top: 4px solid #d97706;">
+                    <div class="flex-between mb-2">
+                        <strong style="color: #b45309;">🏢 Department Rep</strong>
+                        <span class="badge badge-dept">Resolve & Update</span>
+                    </div>
+                    <p class="text-sm text-muted mb-3">View department work queues, update status to 'In Progress', and mark tickets 'Resolved' with notes.</p>
+                    <button class="btn btn-sm btn-outline btn-block" onclick="window.civicfixAuth.switchRole('department_rep'); alert('Switched to Dept Rep role (Carlos Mendez - PWD). Check Complaints to advance resolution!');">
+                        Switch to Dept Rep
+                    </button>
+                </div>
+
+                <div class="card p-4" style="border-top: 4px solid #dc2626;">
+                    <div class="flex-between mb-2">
+                        <strong style="color: #991b1b;">⚙️ Administrator</strong>
+                        <span class="badge badge-admin">Oversee & Audit</span>
+                    </div>
+                    <p class="text-sm text-muted mb-3">Supervise municipal health, monitor overdue SLA escalations, analyze historical recurring hotspots.</p>
+                    <button class="btn btn-sm btn-outline btn-block" onclick="window.civicfixAuth.switchRole('admin'); alert('Switched to Admin role (Eleanor Vance). Open Analytics & Hotspots!');">
+                        Switch to Admin
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Advanced Engineering Challenge Highlight -->
+        <section class="card p-6" style="background: #f8fafc; border: 2px dashed #93c5fd;">
+            <div class="flex-between flex-wrap gap-2">
+                <div>
+                    <span class="badge badge-primary mb-2">ADVANCED ENGINEERING CHALLENGE</span>
+                    <h3 style="font-size: 1.4rem; font-weight: 800; color: #0f172a;">Historical Complaint Hotspot & Preventive Maintenance Engine</h3>
+                    <p class="text-muted mt-1" style="max-width: 780px;">
+                        CivicFix shifts governance from reactive repairs to predictive maintenance by clustering historical complaint data and generating explainable maintenance priorities for municipal engineers.
+                    </p>
+                </div>
+                <a href="dashboard.html#preventive-section" class="btn btn-primary">
+                    View Engineering Recommendations ➔
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div>
+                <div class="footer-brand">🛠️ CivicFix</div>
+                <p>An open, accountable local infrastructure complaint management system designed to make municipal maintenance transparent, traceable, and measurable.</p>
+                
+                <div class="footer-disclaimer-box">
+                    <strong>⚖️ Safety, Ethics & Limitations Notice:</strong>
+                    CivicFix is an independent platform for civic issue tracking. It does not imply an official municipal connection without authorization. Public exposure of personal citizen details is strictly prevented.
+                </div>
+            </div>
+
+            <div>
+                <h4 style="color: white; margin-bottom: 0.75rem;">Navigation</h4>
+                <p><a href="index.html" style="color: #94a3b8;">Home</a></p>
+                <p><a href="submit-complaint.html" style="color: #94a3b8;">Report Complaint</a></p>
+                <p><a href="complaints.html" style="color: #94a3b8;">Complaints Directory</a></p>
+                <p><a href="public-map.html" style="color: #94a3b8;">Public Issue Map</a></p>
+                <p><a href="dashboard.html" style="color: #94a3b8;">City Dashboard & Hotspots</a></p>
+            </div>
+
+            <div>
+                <h4 style="color: white; margin-bottom: 0.75rem;">Platform Testing</h4>
+                <p><a href="#" onclick="window.civicfixDB.resetToDefaults(); location.reload();" style="color: #38bdf8;">🔄 Reset Demo Database</a></p>
+                <p><a href="login.html" style="color: #94a3b8;">Login Accounts</a></p>
+                <p><a href="register.html" style="color: #94a3b8;">Citizen Registration</a></p>
+                <p><span class="badge badge-success mt-2">v1.0.0 PostgreSQL / Supabase</span></p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <span>© 2026 CivicFix Platform. Clean, Modular, Framework-Free Architecture.</span>
+            <span>PostgreSQL • Supabase • Pure HTML5/CSS3/Vanilla JS</span>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/supabase.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

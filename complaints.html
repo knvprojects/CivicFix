@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complaints Directory – CivicFix</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="nav-container">
+            <a href="index.html" class="brand-logo">
+                <div class="brand-icon">🛠️</div>
+                <span>CivicFix</span>
+            </a>
+
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="submit-complaint.html" class="nav-link">Report Issue</a></li>
+                    <li><a href="complaints.html" class="nav-link active">Complaints</a></li>
+                    <li><a href="public-map.html" class="nav-link">Public Map</a></li>
+                    <li><a href="dashboard.html" class="nav-link">Analytics & Hotspots</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-auth-section" id="nav-user-widget"></div>
+        </div>
+    </header>
+
+    <main class="main-wrapper">
+        <div class="page-header">
+            <div>
+                <h1 class="page-title">Infrastructure Complaints Directory</h1>
+                <p class="page-subtitle">Track, verify, triage, and monitor municipal infrastructure issues across all wards.</p>
+            </div>
+            <a href="submit-complaint.html" class="btn btn-primary">➕ Report New Issue</a>
+        </div>
+
+        <!-- Role-based Quick Filter Tabs -->
+        <div class="role-tabs-bar">
+            <button class="role-tab active" data-role-tab="all">All Complaints</button>
+            <button class="role-tab" data-role-tab="needs_verification">🛡️ Needs Verification (Submitted)</button>
+            <button class="role-tab" data-role-tab="my_dept">🏢 My Department Queue</button>
+            <button class="role-tab" data-role-tab="overdue">⚠️ Overdue / Escalated</button>
+            <button class="role-tab" data-role-tab="my_reports">👤 My Submissions</button>
+        </div>
+
+        <!-- Filter & Search Controls -->
+        <div class="filter-bar">
+            <input type="text" id="filter-search" class="form-control filter-input" placeholder="🔍 Search tracking #, keyword, or locality...">
+
+            <select id="filter-status" class="form-control" style="width: auto; min-width: 140px;">
+                <option value="all">All Statuses</option>
+                <option value="submitted">Submitted</option>
+                <option value="verified">Verified</option>
+                <option value="assigned">Assigned</option>
+                <option value="in_progress">In Progress</option>
+                <option value="resolved">Resolved</option>
+                <option value="rejected">Rejected</option>
+            </select>
+
+            <select id="filter-category" class="form-control" style="width: auto; min-width: 160px;">
+                <option value="all">All Categories</option>
+            </select>
+
+            <select id="filter-department" class="form-control" style="width: auto; min-width: 160px;">
+                <option value="all">All Departments</option>
+            </select>
+
+            <select id="filter-severity" class="form-control" style="width: auto; min-width: 130px;">
+                <option value="all">All Severities</option>
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+                <option value="critical">Critical</option>
+            </select>
+
+            <span id="complaints-count" class="text-xs text-muted font-bold" style="margin-left: auto;">
+                Loading complaints...
+            </span>
+        </div>
+
+        <!-- Table Card -->
+        <div class="card" style="padding: 1.5rem;">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width: 135px;">Tracking ID</th>
+                            <th>Complaint Title & Locality</th>
+                            <th style="width: 170px;">Category</th>
+                            <th style="width: 90px;">Dept</th>
+                            <th style="width: 130px;">Impact & Age</th>
+                            <th style="width: 130px;">Priority Score</th>
+                            <th style="width: 120px;">Status</th>
+                            <th style="width: 90px;">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="complaints-table-body">
+                        <!-- Populated dynamically by complaints.js -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-bottom">
+            <span>© 2026 CivicFix Platform.</span>
+            <span>Local Infrastructure Complaint Management Platform.</span>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/supabase.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/complaints.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            window.complaintsCtrl.initComplaintsList();
+        });
+    </script>
+</body>
+</html>

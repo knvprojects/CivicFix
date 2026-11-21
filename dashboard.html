@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard & Analytics – CivicFix</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="nav-container">
+            <a href="index.html" class="brand-logo">
+                <div class="brand-icon">🛠️</div>
+                <span>CivicFix</span>
+            </a>
+
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="submit-complaint.html" class="nav-link">Report Issue</a></li>
+                    <li><a href="complaints.html" class="nav-link">Complaints</a></li>
+                    <li><a href="public-map.html" class="nav-link">Public Map</a></li>
+                    <li><a href="dashboard.html" class="nav-link active">Dashboard</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-auth-section" id="nav-user-widget"></div>
+        </div>
+    </header>
+
+    <main class="main-wrapper">
+        <!-- Role-Specific Header Banner (Citizen, Moderator, Dept Rep, or Admin) -->
+        <div id="dashboard-role-banner" class="page-header">
+            <div>
+                <h1 class="page-title">CivicFix Service Dashboard</h1>
+                <p class="page-subtitle">Loading role-tailored dashboard console...</p>
+            </div>
+        </div>
+
+        <!-- Role-Specific Dynamic Container -->
+        <div id="role-dashboard-container">
+            <div class="card p-6 text-center text-muted">
+                <p>Loading role-tailored console...</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-bottom">
+            <span>© 2026 CivicFix Platform.</span>
+            <span>Local Infrastructure Complaint Management Platform.</span>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/supabase.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

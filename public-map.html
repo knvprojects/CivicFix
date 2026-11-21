@@ -1,0 +1,149 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Public Infrastructure Map – CivicFix</title>
+    <!-- Leaflet Map CSS: Local with CDN Fallback -->
+    <link rel="stylesheet" href="assets/leaflet/leaflet.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+</head>
+<body style="min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden;">
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="nav-container">
+            <a href="index.html" class="brand-logo">
+                <div class="brand-icon">🛠️</div>
+                <span>CivicFix</span>
+            </a>
+
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="submit-complaint.html" class="nav-link">Report Issue</a></li>
+                    <li><a href="complaints.html" class="nav-link">Complaints</a></li>
+                    <li><a href="public-map.html" class="nav-link active">Public Map</a></li>
+                    <li><a href="dashboard.html" class="nav-link">Analytics & Hotspots</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-auth-section" id="nav-user-widget"></div>
+        </div>
+    </header>
+
+    <!-- Map Viewport with Responsive Control Panel -->
+    <div class="map-full-container">
+        <!-- Floating Interactive Filter Box (Responsive / Collapsible on Mobile) -->
+        <div class="map-floating-panel" id="public-map-panel">
+            <div class="panel-header-toggle">
+                <div class="flex-between" style="width: 100%; gap: 0.5rem;">
+                    <div style="display: flex; align-items: center; gap: 0.45rem;">
+                        <h3 style="font-size: 1.05rem; font-weight: 800; color: #0f172a; margin: 0;">🗺️ Public Civic Map</h3>
+                        <span class="badge badge-primary">LIVE</span>
+                    </div>
+                    <button type="button" class="btn-toggle-panel" id="btn-toggle-map-panel" title="Toggle Filters">
+                        <span id="toggle-panel-label">Controls ▾</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="panel-collapsible-body" id="map-panel-body">
+                <p class="text-xs text-muted mb-3">Live GIS map of reported infrastructure tickets, status badges, and recurring failure hotspots.</p>
+
+                <!-- Native Browser GPS Locate Button -->
+                <button type="button" id="btn-public-locate-me" class="btn btn-outline btn-sm btn-block mb-3" style="font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 0.45rem; background: #f0fdf4; border-color: #86efac; color: #15803d;">
+                    <span>📍 Center on My Location</span>
+                </button>
+                <div id="public-map-status" class="location-status-badge mb-2" style="display: none;"></div>
+
+                <div class="form-group mb-2">
+                    <label class="form-label text-xs">Filter by Category</label>
+                    <select id="map-filter-category" class="form-control" style="font-size: 0.85rem; padding: 0.45rem;">
+                        <option value="all">All Categories</option>
+                        <option value="22222222-2222-2222-2222-222222222201">🗑️ Garbage & Sanitation</option>
+                        <option value="22222222-2222-2222-2222-222222222202">💧 Drainage & Sewage</option>
+                        <option value="22222222-2222-2222-2222-222222222203">🚧 Roads & Potholes</option>
+                        <option value="22222222-2222-2222-2222-222222222204">⚡ Streetlights & Electrical</option>
+                        <option value="22222222-2222-2222-2222-222222222205">🌳 Public Infrastructure</option>
+                    </select>
+                </div>
+
+                <div class="form-group mb-2">
+                    <label class="form-label text-xs">Filter by Status</label>
+                    <select id="map-filter-status" class="form-control" style="font-size: 0.85rem; padding: 0.45rem;">
+                        <option value="all">All Issues (Open + Resolved)</option>
+                        <option value="submitted">Submitted Only</option>
+                        <option value="verified">Verified Only</option>
+                        <option value="in_progress">In Progress</option>
+                        <option value="resolved">Resolved Issues</option>
+                    </select>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label style="display: flex; align-items: center; gap: 0.45rem; font-size: 0.84rem; cursor: pointer; color: #0f172a; font-weight: 600;">
+                        <input type="checkbox" id="map-toggle-hotspots" checked>
+                        <span>🔥 Highlight Recurring Hotspots</span>
+                    </label>
+                </div>
+
+                <!-- Legend -->
+                <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 0.6rem; font-size: 0.74rem;">
+                    <strong>Map Legend:</strong>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.35rem; margin-top: 0.35rem;">
+                        <span>💧 Drainage</span>
+                        <span>🗑️ Garbage</span>
+                        <span>🚧 Potholes</span>
+                        <span>⚡ Streetlights</span>
+                        <span>🌳 Parks/Infra</span>
+                        <span style="color: #ef4444; font-weight: 700;">⭕ Hotspot Zone</span>
+                    </div>
+                </div>
+
+                <div class="mt-3 pt-2" style="border-top: 1px solid var(--slate-200); display: flex; gap: 0.5rem;">
+                    <a href="submit-complaint.html" class="btn btn-primary btn-sm btn-block">➕ Report Issue</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- The Leaflet Map Container -->
+        <div id="public-map" style="width: 100%; height: 100%; min-height: 450px;"></div>
+    </div>
+
+    <!-- Leaflet Map JS: Local with CDN Fallback -->
+    <script src="assets/leaflet/leaflet.js"></script>
+    <script>
+        if (typeof window.L === 'undefined') {
+            document.write('<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"><\/script>');
+        }
+    </script>
+    <script src="js/supabase.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/map.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            window.civicfixMap.initPublicMap('public-map');
+
+            // Responsive toggle panel for mobile screens
+            const btnToggle = document.getElementById('btn-toggle-map-panel');
+            const panel = document.getElementById('public-map-panel');
+            const label = document.getElementById('toggle-panel-label');
+            if (btnToggle && panel) {
+                btnToggle.addEventListener('click', () => {
+                    panel.classList.toggle('collapsed');
+                    if (label) {
+                        label.textContent = panel.classList.contains('collapsed') ? 'Controls ▴' : 'Collapse ▾';
+                    }
+                    setTimeout(() => {
+                        if (window.civicfixMap && window.civicfixMap.map) {
+                            window.civicfixMap.map.invalidateSize();
+                        }
+                    }, 300);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
