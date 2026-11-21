@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿# 🛠️ CivicFix – Local Infrastructure Complaint Management Platform
 
 > **Make local infrastructure complaints trackable, transparent, and measurable.**
@@ -238,3 +239,6 @@ For quick evaluation, **a role-switcher dropdown is built into the top navigatio
    - **Seasonal/Weather Vulnerability**: *Pre-monsoon season approaching in 3 weeks; high risk of multi-block flooding.*
    - **Cost-Benefit ROI**: *Preventive desilting cost ($1,800) prevents an estimated $32,000 in commercial road damage and business closure downtime.*
 
+=======
+# CivicFix
+>>>>>>> 4b991978836a5d16be7cfdf09097104f384a6300
